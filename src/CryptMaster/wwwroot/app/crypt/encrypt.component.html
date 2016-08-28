@@ -1,0 +1,46 @@
+<div>
+      <div class="jumbotron">
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="encryptionMethod">Algorithm <i class="fa fa-circle-o-notch fa-spin" *ngIf="isLoadingType"></i></label>
+                <select class="form-control" id="encryptionMethod" required [(ngModel)]="model.type" name="type">
+                    <option *ngFor="let t of types" [value]="t">{{t}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="radio">
+                    <label>
+                        <input class="keep-spaces" type="radio" name="cryptType" id="decryption" value="encryption" [(ngModel)]="model.cryptType" (change)="onCryptTypeChanged()">
+                        To
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input class="keep-spaces" type="radio" name="cryptType" id="encryption" value="decryption" [(ngModel)]="model.cryptType" (change)="onCryptTypeChanged()">
+                        From
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="textToEncrypt">Input</label>
+                <textarea class="form-control" id="textToEncrypt" rows="3" [(ngModel)]="model.text" name="text"></textarea>
+                <div class="alert alert-danger" *ngIf="errorMessage">
+                    {{errorMessage}}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default" [disabled]="isCrypting">
+                <span *ngIf="model.cryptType === 'encryption'">Encrypt</span>
+                <span *ngIf="model.cryptType === 'decryption'">Decrypt</span>
+                <span> <i class="fa fa-circle-o-notch fa-spin" *ngIf="isCrypting"></i></span>
+            </button>
+        </form>
+      </div>
+
+      <div class="jumbotron" *ngIf="model.outputText">
+          <div class="form-group">
+              <label for="textToEncrypt">Output</label>
+              <pre class="keep-spaces">{{model.outputText}}</pre>
+          </div>
+      </div>
+</div>
