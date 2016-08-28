@@ -8,6 +8,7 @@ This code was created as technology demonstration of web service using C# backen
 You will need to have:
 
 * [ASP.NET Core 1.0](https://www.microsoft.com/net/core) - for backend compilation
+* [NodeJS](https://nodejs.org/en/) - for building utils
 * [Typescript] - for frontend compilation 
   * Install that using npm: `npm install -g typescript`
 
@@ -17,6 +18,7 @@ from the root folder, type following commands to build and run solution:
 
 ```
 cd src/CryptMaster
+npm install
 tsc
 dotnet restore
 dotnet run
