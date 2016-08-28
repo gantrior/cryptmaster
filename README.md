@@ -89,4 +89,4 @@ What could be improved?
   
 # License
 
-MIT <3 [sgbj](https://github.com/sgbj)
+MIT
