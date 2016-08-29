@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -113,6 +114,9 @@
                 switch (character)
                 {
                     case ' ':
+                    case '\n':
+                    case '\r':
+                    case '\t':
                         AppendIfPossible(result, currentNode, state);
 
                         currentNode = this.decryptionTree;
@@ -159,7 +163,10 @@
             List<string> lastWord = new List<string>();
             var errorMessage = string.Empty;
             var hasError = false;
-            foreach (char character in text.ToLower())
+
+            // for simplification lets replace new line and tab into space
+            Regex pattern = new Regex(@"[\t\r\n]");
+            foreach (char character in pattern.Replace(text, " ").ToLower())
             {
                 if (character == ' ')
                 {

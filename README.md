@@ -33,7 +33,7 @@ You can use any IDE you want, but to use Visual Studio you must have:
 You can then just open "CryptMaster.sln", build and start application from Visual Studio
 
 ## Technology
-I have decided to use following technologies due to my personal preference:
+I decided to use following technologies due to my personal preferences:
 
 * Backend 
   * [ASP.NET Core 1.0](https://www.microsoft.com/net/core)
@@ -53,7 +53,7 @@ Encryption algorithm explained:
 * When service is created it prepares encryptionDictionary with all supported morse characters
 * When Encrypt is called, it iterates through the text and simply look for morse representation in dictionary
 Decryption algorithm explained:
-* When service it prepares [binary tree](https://en.wikipedia.org/wiki/Morse_code)
+* When service is created it prepares [binary tree](https://en.wikipedia.org/wiki/Morse_code)
 * When Decrypt is called it iterates through the text and walk through binary tree to look for character
 General rules:
 * Characters are separated by space
@@ -62,7 +62,7 @@ General rules:
 ## General implementation notes and decisions
 
 * Code uses Dependency Injection and it is easy to extend by another algorithm by just implementing interface ICryptService (Autofac will find it in the solution automatically)
-* API returns BadRequest in case of wrong input (for example "a" when expecting morse code etc), however for user friendly input it is returning also partially translated content with the response. To show to the user where was the error
+* API returns BadRequest in case of wrong input (for example "a" when expecting morse code etc), however for user friendly input it is returning also partially translated content with the response, so that user can see where the error is.
 * Swagger is integrated with the solution. Therefore API documentation can be accessed at runtime through "/swagger/ui/index.html" (ex: http://localhost:51092/swagger/ui/index.html)
 
 ## Code
@@ -80,13 +80,15 @@ General rules:
 * `src/CryptMaster/wwwroot/app/shared/*.ts` - angular2 services which sends actual requests to the backend
   
 # Testing
-There are XUnit tests implemented which tests main business logic (morse code encryption/decryption)
+There are XUnit tests implemented to verify main business logic (morse code encryption/decryption)
 
 # What is next
 What could be improved?
 * write frontend unittests (using karma)
 * write frontend e2e tests
-  
+* include [Prosigns for Morse code](https://en.wikipedia.org/wiki/Prosigns_for_Morse_code)
+* cover algorithms with parameter (for example to define shift in [Ceasar cipher](https://en.wikipedia.org/wiki/Caesar_cipher))
+
 # License
 
 MIT
